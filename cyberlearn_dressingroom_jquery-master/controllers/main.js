@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).ready(function () {
   var callData = new CallData();
   var listChosen = new ListChosen();
 
@@ -7,19 +7,18 @@ $(document).ready(function() {
   function renderHMTL() {
     callData
       .getListData()
-      .done(function(result) {
+      .done(function (result) {
         var contentPill = "";
         var contentTabPane = "";
-        result.navPills.forEach(function(item) {
+        result.navPills.forEach(function (item) {
           var activeClass = item.tabName === "tabTopClothes" ? "active" : "";
           var fadeClass = item.tabName !== "tabTopClothes" ? "fade" : "";
 
           contentPill += getElmTabPills(item, activeClass);
 
           contentTabPane += `
-            <div class="tab-pane container ${fadeClass} ${activeClass}" id="${
-            item.tabName
-          }">
+            <div class="tab-pane container ${fadeClass} ${activeClass}" id="${item.tabName
+            }">
             <div class="row">
                 ${renderTabPane(item.tabName, result.tabPanes)}
             </div>
@@ -29,7 +28,7 @@ $(document).ready(function() {
         $(".nav-pills").html(contentPill);
         $(".tab-content").html(contentTabPane);
       })
-      .fail(function(err) {
+      .fail(function (err) {
         console.log(err);
       });
   }
@@ -87,7 +86,7 @@ $(document).ready(function() {
 
   function getTypeArr(tabType, data) {
     var tempArr = [];
-    data.forEach(function(item) {
+    data.forEach(function (item) {
       if (item.type === tabType) {
         tempArr.push(item);
       }
@@ -97,7 +96,7 @@ $(document).ready(function() {
 
   function getElmItem(tempArr) {
     var elmItem = "";
-    tempArr.forEach(function(item) {
+    tempArr.forEach(function (item) {
       elmItem += `<div class="col-md-3">
             <div class="card text-center">
               <img src="${item.imgSrc_jpg}" />
@@ -112,10 +111,10 @@ $(document).ready(function() {
     return elmItem;
   }
 
-  function findIndex(type){
+  function findIndex(type) {
     var index = -1;
     if (listChosen.arr && listChosen.arr.length > 0) {
-      listChosen.arr.forEach(function(_item, i) {
+      listChosen.arr.forEach(function (_item, i) {
         if (_item.type === type) {
           index = i;
         }
@@ -124,7 +123,7 @@ $(document).ready(function() {
     return index;
   }
 
-  $("body").delegate(".changStyle", "click", function() {
+  $("body").delegate(".changStyle", "click", function () {
     var id = $(this).data("id");
     var type = $(this).data("type");
     var name = $(this).data("name");
@@ -148,7 +147,7 @@ $(document).ready(function() {
 
 function renderContain(chosenItems) {
   if (chosenItems && chosenItems.length > 0) {
-    chosenItems.forEach(function(item) {
+    chosenItems.forEach(function (item) {
       if (item.type === "topclothes") {
         renderBikiniTop(item.imgsrc_png);
       }
