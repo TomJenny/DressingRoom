@@ -10,14 +10,14 @@ let getArrayELE = (id) => document.querySelectorAll(id);
 
 const TryOn = () => {
     DressRoomSer.getListObjStyle()
-        .then(result => {
-
+        .then(objStyle => {
+            console.log(objStyle.data);
             getArrayELE("button.changStyle").forEach(btn => {
                 btn.addEventListener("click", () => {
 
                     let typeELE = btn.getAttribute("data-type");
                     let background = btn.getAttribute("data-imgsrcpng");
-                    let chooseStyle = objStyle.find((style) => style.type === typeELE);
+                    let chooseStyle = objStyle.data.find((style) => style.type === typeELE);
 
                     const changeStyle = new ChangeStyle({ ...chooseStyle, background: background });
                     changeStyle.renderHTML();

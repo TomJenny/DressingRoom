@@ -9,7 +9,7 @@ export class DressRoomServices {
     getListObjStyle() {
         let promise = axios({
             method: 'get',
-            url: '../data/objStyle.js'
+            url: '../data/ObjStyle.json'
         });
         return promise;
     }
